@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="rz.redirect.manager.redirect.class">Rz\RedirectBundle\Entity\RedirectManager</parameter>
+    </parameters>
+
+    <services>
+        <service id="rz.redirect.manager.redirect" class="%rz.redirect.manager.redirect.class%">
+            <argument>%rz.redirect.manager.redirect.entity%</argument>
+            <argument type="service" id="doctrine" />
+        </service>
+    </services>
+</container>

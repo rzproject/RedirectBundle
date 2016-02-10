@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+    <parameters>
+        <parameter key="rz.redirect.admin.redirect.class">Rz\RedirectBundle\Admin\RedirectAdmin</parameter>
+    </parameters>
+
+    <services>
+		<service id="rz.redirect.admin.redirect" class="%rz.redirect.admin.redirect.class%">
+            <tag name="sonata.admin" manager_type="orm" audit="false" group="rz.redirect.admin.redirect" label="rz.redirect.admin.redirect"  label_catalogue="%rz.redirect.admin.redirect.translation_domain%" label_translator_strategy="sonata.admin.label.strategy.underscore" />
+			<argument />
+			<argument>%rz.redirect.admin.redirect.entity%</argument>
+            <argument>%rz.redirect.admin.redirect.controller%</argument>
+            <call method="setTranslationDomain">
+                <argument>%rz.redirect.admin.redirect.translation_domain%</argument>
+            </call>
+		</service>
+    </services>
+</container>
