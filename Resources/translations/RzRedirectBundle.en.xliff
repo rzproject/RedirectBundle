@@ -26,6 +26,14 @@
                 <source>form.label_enabled</source>
                 <target>Enabled</target>
             </trans-unit>
+            <trans-unit id="form.label_publication_date_start ">
+                <source>form.label_publication_date_start</source>
+                <target>Publication Date Start</target>
+            </trans-unit>
+            <trans-unit id="form.label_publication_date_end">
+                <source>form.label_publication_date_end</source>
+                <target>Publication Date End</target>
+            </trans-unit>
             <trans-unit id="list.label_from_path">
                 <source>list.label_from_path</source>
                 <target>From Path</target>
@@ -45,6 +53,14 @@
             <trans-unit id="list.label_updated_at">
                 <source>list.label_updated_at</source>
                 <target>Updated At</target>
+            </trans-unit>
+            <trans-unit id="list.label_publication_date_start ">
+                <source>list.label_publication_date_start</source>
+                <target>Publication Date Start</target>
+            </trans-unit>
+            <trans-unit id="list.label_publication_date_end">
+                <source>list.label_publication_date_end</source>
+                <target>Publication Date End</target>
             </trans-unit>
             <trans-unit id="list.label_created_at">
                 <source>list.label_created_at</source>
@@ -74,6 +90,14 @@
                 <source>filter.label_created_at</source>
                 <target>Created At</target>
             </trans-unit>
+            <trans-unit id="filter.label_publication_date_start ">
+                <source>filter.label_publication_date_start</source>
+                <target>Publication Date Start</target>
+            </trans-unit>
+            <trans-unit id="filter.label_publication_date_end">
+                <source>filter.label_publication_date_end</source>
+                <target>Publication Date End</target>
+            </trans-unit>
             <trans-unit id="show.label_from_path">
                 <source>show.label_from_path</source>
                 <target>From Path</target>
@@ -97,6 +121,14 @@
             <trans-unit id="show.label_created_at">
                 <source>show.label_created_at</source>
                 <target>Created At</target>
+            </trans-unit>
+            <trans-unit id="show.label_publication_date_start ">
+                <source>show.label_publication_date_start</source>
+                <target>Publication Date Start</target>
+            </trans-unit>
+            <trans-unit id="show.label_publication_date_end">
+                <source>show.label_publication_date_end</source>
+                <target>Publication Date End</target>
             </trans-unit>
         </body>
     </file>

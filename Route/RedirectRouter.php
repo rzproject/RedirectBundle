@@ -90,7 +90,9 @@ class RedirectRouter implements ChainedRouterInterface
      */
     public function match($pathinfo)
     {
-        $redirect = $this->redirectManager->findOneBy(array('fromPath' => $pathinfo));
+        //$redirect = $this->redirectManager->findOneBy(array('fromPath' => $pathinfo));
+        $redirect = $this->redirectManager->findEnableRedirect(array('fromPath' => $pathinfo));
+
 
         if ($redirect === null) {
             throw new ResourceNotFoundException('Redirect not found!');

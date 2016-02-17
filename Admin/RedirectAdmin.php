@@ -35,6 +35,8 @@ class RedirectAdmin extends Admin
             ->add('fromPath', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('xs', 'sm')))))
             ->add('toPath', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('xs', 'sm')))))
             ->add('enabled', null, array('editable' => true, 'footable'=>array('attr'=>array('data-breakpoints'=>array('xs', 'sm')))))
+            ->add('publicationDateStart', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('all')))))
+            ->add('publicationDateEnd', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('all')))))
             ->add('updatedAt', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('all')))))
             ->add('createdAt', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('all')))))
         ;
@@ -49,6 +51,8 @@ class RedirectAdmin extends Admin
             ->add('fromPath')
             ->add('toPath')
             ->add('enabled')
+            ->add('publicationDateStart', 'doctrine_orm_datetime_range', array('field_type' => 'sonata_type_datetime_range_picker'))
+            ->add('publicationDateEnd', 'doctrine_orm_datetime_range', array('field_type' => 'sonata_type_datetime_range_picker'))
             ->add('updatedAt', 'doctrine_orm_datetime_range', array('field_type' => 'sonata_type_datetime_range_picker'))
             ->add('createdAt', 'doctrine_orm_datetime_range', array('field_type' => 'sonata_type_datetime_range_picker'))
         ;
@@ -62,10 +66,12 @@ class RedirectAdmin extends Admin
             ->with('Redirect', array('class' => 'col-md-8'))
                 ->add('fromPath', 'text')
                 ->add('toPath', 'text')
-            ->end()
-            ->with('Options', array('class' => 'col-md-4'))
                 ->add('name', null, array('required' => false))
                 ->add('enabled', null, array('required' => false))
+            ->end()
+            ->with('Options', array('class' => 'col-md-4'))
+                ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
+                ->add('publicationDateEnd', 'sonata_type_datetime_picker', array('required' => false, 'dp_side_by_side' => true))
             ->end();
         ;
     }

@@ -8,6 +8,10 @@ abstract class Redirect implements RedirectInterface
 
     protected $enabled;
 
+    protected $type;
+
+    protected $referenceId;
+
     protected $fromPath;
 
     protected $toPath;
@@ -15,6 +19,16 @@ abstract class Redirect implements RedirectInterface
     protected $createdAt;
 
     protected $updatedAt;
+
+    /**
+     * @var \DateTime
+     */
+    protected $publicationDateStart;
+
+    /**
+     * @var \DateTime
+     */
+    protected $publicationDateEnd;
 
     /**
      * {@inheritdoc}
@@ -116,6 +130,70 @@ abstract class Redirect implements RedirectInterface
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublicationDateStart()
+    {
+        return $this->publicationDateStart;
+    }
+
+    /**
+     * @param \DateTime $publicationDateStart
+     */
+    public function setPublicationDateStart($publicationDateStart)
+    {
+        $this->publicationDateStart = $publicationDateStart;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getPublicationDateEnd()
+    {
+        return $this->publicationDateEnd;
+    }
+
+    /**
+     * @param \DateTime $publicationDateEnd
+     */
+    public function setPublicationDateEnd($publicationDateEnd)
+    {
+        $this->publicationDateEnd = $publicationDateEnd;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReferenceId()
+    {
+        return $this->referenceId;
+    }
+
+    /**
+     * @param mixed $referenceId
+     */
+    public function setReferenceId($referenceId)
+    {
+        $this->referenceId = $referenceId;
     }
 
     /**
