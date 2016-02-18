@@ -40,22 +40,67 @@ class RedirectManager extends BaseEntityManager implements RedirectManagerInterf
     /**
      * {@inheritdoc}
      */
+    public function findRedirectsByReferenceId($referenceId, $currentId)
+    {
+        if(!$referenceId || !$currentId ) {
+            throw new \RuntimeException('please provide a `referenceId` and `currentId`');
+        }
+
+        $parameters = ['referenceId' => $referenceId, 'currentId' => $currentId];
+
+        $query = $this->getRepository()
+            ->createQueryBuilder('r')
+            ->andWhere('r.publicationDateEnd IS NULL AND r.referenceId = :referenceId AND r.id != :currentId');
+
+        $query->setParameters($parameters);
+
+        return $query->getQuery()
+            ->useResultCache(true, 3600)
+            ->getResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function fixOldRedirects(array $criteria)
     {
-        if (!isset($criteria['referenceId']) && !isset($criteria['type'])  && !isset($criteria['toPath'])  && !isset($criteria['currentId']) ) {
-            throw new \RuntimeException('please provide a `referenceId`, `type`, `toPath` and `currentId` as criteria key');
-        } else {
 
+        if (!isset($criteria['referenceId']) && !isset($criteria['type']) && !isset($criteria['toPath']) && !isset($criteria['currentId'])) {
+            throw new \RuntimeException('please provide a `referenceId`, `type`, `toPath` and `currentId` as criteria key');
+        }
+
+        //find all old redirects
+        $redirects = $this->findRedirectsByReferenceId($criteria['referenceId'], $criteria['currentId']);
+
+        if (count($redirects) == 0) {
+            return;
+        }
+
+        //update all current redirects
+        $publicationDateStart = $publicationDateEnd = new \Datetime();
+        $redirectIds = [];
+
+        foreach ($redirects as $redirect) {
+            $redirectIds[] = $redirect->getId();
+            $newRedirect = $this->create();
+            $newRedirect->setName($redirect->getName());
+            $newRedirect->setEnabled($redirect->getEnabled());
+            $newRedirect->setType($redirect->getType());
+            $newRedirect->setReferenceId($redirect->getReferenceId());
+            $newRedirect->setFromPath($redirect->getFromPath());
+            $newRedirect->setToPath($criteria['toPath']);
+            $newRedirect->setPublicationDateStart($publicationDateStart);
+            $newRedirect->setPublicationDateEnd(null);
+            $this->getEntityManager()->persist($newRedirect);
         }
 
         $this->getEntityManager()->flush();
+
         //@todo: strange sql and low-level pdo usage: use dql or qb
-        $sql = sprintf("UPDATE %s SET to_path = '%s' WHERE reference_id = %s AND type = '%s' AND id != %s",
+        $sql = sprintf("UPDATE %s SET publication_date_end = '%s' WHERE id IN(%s)",
             $this->getTableName(),
-            $criteria['toPath'],
-            $criteria['referenceId'],
-            $criteria['type'],
-            $criteria['currentId']
+            $publicationDateEnd->format('Y-m-d H:i:s'),
+            implode(',', $redirectIds)
         );
 
         $this->getConnection()->query($sql);
