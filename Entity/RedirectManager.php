@@ -36,4 +36,28 @@ class RedirectManager extends BaseEntityManager implements RedirectManagerInterf
             ->useResultCache(true, 3600)
             ->getOneOrNullResult();
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fixOldRedirects(array $criteria)
+    {
+        if (!isset($criteria['referenceId']) && !isset($criteria['type'])  && !isset($criteria['toPath'])  && !isset($criteria['currentId']) ) {
+            throw new \RuntimeException('please provide a `referenceId`, `type`, `toPath` and `currentId` as criteria key');
+        } else {
+
+        }
+
+        $this->getEntityManager()->flush();
+        //@todo: strange sql and low-level pdo usage: use dql or qb
+        $sql = sprintf("UPDATE %s SET to_path = '%s' WHERE reference_id = %s AND type = '%s' AND id != %s",
+            $this->getTableName(),
+            $criteria['toPath'],
+            $criteria['referenceId'],
+            $criteria['type'],
+            $criteria['currentId']
+        );
+
+        $this->getConnection()->query($sql);
+    }
 }
