@@ -12,6 +12,12 @@
         <service id="rz.redirect.manager.redirect" class="%rz.redirect.manager.redirect.class%">
             <argument>%rz.redirect.manager.redirect.entity%</argument>
             <argument type="service" id="doctrine" />
+            <call method="setRedirectTypes">
+                <argument>%rz.redirect.types%</argument>
+            </call>
+            <call method="setDefaultRedirect">
+                <argument>%rz.redirect.default_type%</argument>
+            </call>
         </service>
     </services>
 </container>

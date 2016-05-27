@@ -23,6 +23,7 @@ class Configuration implements ConfigurationInterface
         $this->addManagerSection($node);
         $this->addModelSection($node);
         $this->addAdminSection($node);
+        $this->addSettingsSection($node);
         return $treeBuilder;
     }
 
@@ -83,6 +84,31 @@ class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->scalarNode('redirect')->defaultValue('AppBundle\\Entity\\Redirect\\Redirect')->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
+    }
+
+    /**
+     * @param ArrayNodeDefinition $node
+     */
+    private function addSettingsSection(ArrayNodeDefinition $node)
+    {
+        $node
+            ->children()
+                ->arrayNode('redirect')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('default_type')->isRequired()->defaultValue('301')->end()
+                        ->arrayNode('types')
+                            ->useAttributeAsKey('id')
+                            ->prototype('array')
+                                ->children()
+                                    ->scalarNode('name')->isRequired()->end()
+                                ->end()
+                            ->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end()

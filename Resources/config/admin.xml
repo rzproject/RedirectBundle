@@ -18,6 +18,9 @@
             <call method="setTranslationDomain">
                 <argument>%rz.redirect.admin.redirect.translation_domain%</argument>
             </call>
+            <call method="setTypes">
+                <argument>%rz.redirect.types%</argument>
+            </call>
 		</service>
     </services>
 </container>

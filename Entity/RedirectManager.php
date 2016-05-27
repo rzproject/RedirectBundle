@@ -7,6 +7,42 @@ use Rz\RedirectBundle\Model\RedirectManagerInterface;
 
 class RedirectManager extends BaseEntityManager implements RedirectManagerInterface
 {
+
+    protected $redirectTypes = [];
+    protected $defaultRedirect;
+
+    /**
+     * @return array
+     */
+    public function getRedirectTypes()
+    {
+        return $this->redirectTypes;
+    }
+
+    /**
+     * @param array $redirectTypes
+     */
+    public function setRedirectTypes($redirectTypes)
+    {
+        $this->redirectTypes = $redirectTypes;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDefaultRedirect()
+    {
+        return $this->defaultRedirect;
+    }
+
+    /**
+     * @param mixed $defaultRedirect
+     */
+    public function setDefaultRedirect($defaultRedirect)
+    {
+        $this->defaultRedirect = $defaultRedirect;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -88,6 +124,7 @@ class RedirectManager extends BaseEntityManager implements RedirectManagerInterf
             $newRedirect->setType($redirect->getType());
             $newRedirect->setReferenceId($redirect->getReferenceId());
             $newRedirect->setFromPath($redirect->getFromPath());
+            $newRedirect->setRedirect($criteria['redirect']);
             $newRedirect->setToPath($criteria['toPath']);
             $newRedirect->setPublicationDateStart($publicationDateStart);
             $newRedirect->setPublicationDateEnd(null);

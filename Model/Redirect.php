@@ -16,6 +16,8 @@ abstract class Redirect implements RedirectInterface
 
     protected $toPath;
 
+    protected $redirect;
+
     protected $createdAt;
 
     protected $updatedAt;
@@ -194,6 +196,22 @@ abstract class Redirect implements RedirectInterface
     public function setReferenceId($referenceId)
     {
         $this->referenceId = $referenceId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRedirect()
+    {
+        return $this->redirect;
+    }
+
+    /**
+     * @param mixed $redirect
+     */
+    public function setRedirect($redirect)
+    {
+        $this->redirect = $redirect;
     }
 
     /**

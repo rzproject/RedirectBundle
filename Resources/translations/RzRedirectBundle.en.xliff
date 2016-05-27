@@ -34,6 +34,14 @@
                 <source>form.label_publication_date_end</source>
                 <target>Publication Date End</target>
             </trans-unit>
+            <trans-unit id="form.label_type">
+                <source>form.label_type</source>
+                <target>Redirect Type</target>
+            </trans-unit>
+            <trans-unit id="form.label_redirect">
+                <source>form.label_redirect</source>
+                <target>Redirect Type</target>
+            </trans-unit>
             <trans-unit id="list.label_from_path">
                 <source>list.label_from_path</source>
                 <target>From Path</target>
@@ -65,6 +73,10 @@
             <trans-unit id="list.label_created_at">
                 <source>list.label_created_at</source>
                 <target>Created At</target>
+            </trans-unit>
+            <trans-unit id="list.label_redirect">
+                <source>list.label_redirect</source>
+                <target>Redirect Type</target>
             </trans-unit>
             <trans-unit id="filter.label_from_path">
                 <source>filter.label_from_path</source>
@@ -98,6 +110,10 @@
                 <source>filter.label_publication_date_end</source>
                 <target>Publication Date End</target>
             </trans-unit>
+            <trans-unit id="filter.label_redirect">
+                <source>filter.label_redirect</source>
+                <target>Redirect Type</target>
+            </trans-unit>
             <trans-unit id="show.label_from_path">
                 <source>show.label_from_path</source>
                 <target>From Path</target>
@@ -129,6 +145,10 @@
             <trans-unit id="show.label_publication_date_end">
                 <source>show.label_publication_date_end</source>
                 <target>Publication Date End</target>
+            </trans-unit>
+            <trans-unit id="show.label_redirect">
+                <source>show.label_redirect</source>
+                <target>Redirect Type</target>
             </trans-unit>
         </body>
     </file>

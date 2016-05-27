@@ -9,6 +9,7 @@
 
         <field name="fromPath" type="text" column="from_path"/>
         <field name="toPath" type="text" column="to_path"/>
+        <field name="redirect" type="string" column="redirect" nullable="true"/>
 
         <field name="type" type="string" column="type" nullable="true"/>
         <field name="referenceId" type="string" column="reference_id" nullable="true"/>
@@ -19,7 +20,6 @@
 
         <field name="publicationDateStart"   type="datetime"   column="publication_date_start"    nullable="true"/>
         <field name="publicationDateEnd"     type="datetime"   column="publication_date_end"      nullable="true"/>
-
 
 
         <lifecycle-callbacks>

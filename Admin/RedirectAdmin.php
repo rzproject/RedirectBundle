@@ -11,6 +11,8 @@ use Sonata\CoreBundle\Validator\ErrorElement;
 
 class RedirectAdmin extends Admin
 {
+    protected $types;
+
     /**
      * {@inheritdoc}
      */
@@ -35,6 +37,7 @@ class RedirectAdmin extends Admin
             ->add('fromPath', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('xs', 'sm')))))
             ->add('toPath', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('xs', 'sm')))))
             ->add('enabled', null, array('editable' => true, 'footable'=>array('attr'=>array('data-breakpoints'=>array('xs', 'sm')))))
+            ->add('redirect', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('xs', 'sm')))))
             ->add('publicationDateStart', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('all')))))
             ->add('publicationDateEnd', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('all')))))
             ->add('updatedAt', null, array('footable'=>array('attr'=>array('data-breakpoints'=>array('all')))))
@@ -46,15 +49,15 @@ class RedirectAdmin extends Admin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+
         $datagridMapper
             ->add('name')
             ->add('fromPath')
             ->add('toPath')
             ->add('enabled')
+            ->add('redirect', 'doctrine_orm_choice', array(), 'choice', array('choices'=>$this->getTypes()))
             ->add('publicationDateStart', 'doctrine_orm_datetime_range', array('field_type' => 'sonata_type_datetime_range_picker'))
             ->add('publicationDateEnd', 'doctrine_orm_datetime_range', array('field_type' => 'sonata_type_datetime_range_picker'))
-            ->add('updatedAt', 'doctrine_orm_datetime_range', array('field_type' => 'sonata_type_datetime_range_picker'))
-            ->add('createdAt', 'doctrine_orm_datetime_range', array('field_type' => 'sonata_type_datetime_range_picker'))
         ;
     }
     /**
@@ -67,9 +70,10 @@ class RedirectAdmin extends Admin
                 ->add('fromPath', 'text')
                 ->add('toPath', 'text')
                 ->add('name', null, array('required' => false))
-                ->add('enabled', null, array('required' => false))
             ->end()
             ->with('Options', array('class' => 'col-md-4'))
+                ->add('redirect',  'choice', array('choices'=>$this->getTypes(),'required' => true))
+                ->add('enabled', null, array('required' => false))
                 ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
                 ->add('publicationDateEnd', 'sonata_type_datetime_picker', array('required' => false, 'dp_side_by_side' => true))
             ->end();
@@ -102,5 +106,21 @@ class RedirectAdmin extends Admin
                 ->end();
         }
         // @formatter:on
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
+
+    /**
+     * @param mixed $types
+     */
+    public function setTypes($types)
+    {
+        $this->types = $types;
     }
 }
