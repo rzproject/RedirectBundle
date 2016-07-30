@@ -6,5 +6,4 @@ use Sonata\CoreBundle\Model\ManagerInterface;
 
 interface RedirectManagerInterface extends ManagerInterface
 {
-
 }

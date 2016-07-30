@@ -78,7 +78,7 @@ class RedirectManager extends BaseEntityManager implements RedirectManagerInterf
      */
     public function findRedirectsByReferenceId($referenceId, $currentId)
     {
-        if(!$referenceId || !$currentId ) {
+        if (!$referenceId || !$currentId) {
             throw new \RuntimeException('please provide a `referenceId` and `currentId`');
         }
 
@@ -100,7 +100,6 @@ class RedirectManager extends BaseEntityManager implements RedirectManagerInterf
      */
     public function fixOldRedirects(array $criteria)
     {
-
         if (!isset($criteria['referenceId']) && !isset($criteria['type']) && !isset($criteria['toPath']) && !isset($criteria['currentId'])) {
             throw new \RuntimeException('please provide a `referenceId`, `type`, `toPath` and `currentId` as criteria key');
         }

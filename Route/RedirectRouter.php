@@ -97,10 +97,10 @@ class RedirectRouter implements ChainedRouterInterface
         if ($redirect === null) {
             throw new ResourceNotFoundException('Redirect not found!');
         }
-        if(!$redirect->getEnabled()){
+        if (!$redirect->getEnabled()) {
             throw new ResourceNotFoundException('Redirect is disabled!');
         }
-        return array (
+        return array(
             '_controller' => 'RzRedirectBundle:Redirect:redirect',
             '_route'      => '_redirected',
             'redirect'    => $redirect,

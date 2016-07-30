@@ -78,7 +78,7 @@ class RzRedirectExtension extends Extension
     public function configureSettings($config, ContainerBuilder $container)
     {
         $types = [];
-        foreach($config['redirect']['types'] as $id=>$type) {
+        foreach ($config['redirect']['types'] as $id=>$type) {
             $types[$id] = $type['name'];
         }
         $container->setParameter('rz.redirect.types', $types);

@@ -47,7 +47,7 @@ abstract class Redirect implements RedirectInterface
     {
         $name = $this->name;
 
-        if($name === null){
+        if ($name === null) {
             $name = '(unnamed redirect)';
         }
 

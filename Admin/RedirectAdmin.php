@@ -49,7 +49,6 @@ class RedirectAdmin extends Admin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-
         $datagridMapper
             ->add('name')
             ->add('fromPath')
@@ -72,7 +71,7 @@ class RedirectAdmin extends Admin
                 ->add('name', null, array('required' => false))
             ->end()
             ->with('Options', array('class' => 'col-md-4'))
-                ->add('redirect',  'choice', array('choices'=>$this->getTypes(),'required' => true))
+                ->add('redirect',  'choice', array('choices'=>$this->getTypes(), 'required' => true))
                 ->add('enabled', null, array('required' => false))
                 ->add('publicationDateStart', 'sonata_type_datetime_picker', array('dp_side_by_side' => true))
                 ->add('publicationDateEnd', 'sonata_type_datetime_picker', array('required' => false, 'dp_side_by_side' => true))
@@ -93,13 +92,13 @@ class RedirectAdmin extends Admin
                     ->addViolation('This link is already being redirected somewhere else!')
                 ->end();
         }
-        if(substr($object->getToPath(), 0, 1) !== '/'){
+        if (substr($object->getToPath(), 0, 1) !== '/') {
             $errorElement
                 ->with('toPath')
                     ->addViolation('Invalid path! A path start with a "/"')
                 ->end();
         }
-        if(substr($object->getFromPath(), 0, 1) !== '/'){
+        if (substr($object->getFromPath(), 0, 1) !== '/') {
             $errorElement
                 ->with('fromPath')
                     ->addViolation('Invalid path! A path start with a "/"')
